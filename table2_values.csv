@@ -1,0 +1,10 @@
+factor,TOL,VIF
+Elevation,0.818,1.223
+Slope,0.87,1.149
+Aspect,0.977,1.023
+Distance to roads,0.907,1.103
+Distance to rivers,0.817,1.225
+Distance to faults,0.957,1.045
+Lithology,0.958,1.044
+NDVI,0.83,1.204
+MAP,0.857,1.167

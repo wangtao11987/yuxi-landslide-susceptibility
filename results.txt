@@ -1,0 +1,74 @@
+========================================================================
+RERUN OF IC / RF / IC-RF MODELS (PONE-D-26-33050)
+========================================================================
+
+[1] DATASET OVERVIEW
+    Training samples : 1134  (positive 567, negative 567)
+    Test samples     : 486  (positive 243, negative 243)
+    Total            : 1620  (train 70.0% / test 30.0%)
+    RF hyperparameters: {'n_estimators': 100, 'max_depth': 5, 'min_samples_split': 25, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'random_state': 42}
+
+[1b] MULTICOLLINEARITY DIAGNOSTICS (TOL / VIF)
+    Recomputed from the same Pearson correlation matrix used for
+    Fig 2 (all 1620 sample points). VIF = diag(C^-1), TOL = 1 / VIF.
+    Elevation            TOL 0.818   VIF 1.223
+    Slope                TOL 0.870   VIF 1.149
+    Aspect               TOL 0.977   VIF 1.023
+    Distance to roads    TOL 0.907   VIF 1.103
+    Distance to rivers   TOL 0.817   VIF 1.225
+    Distance to faults   TOL 0.957   VIF 1.045
+    Lithology            TOL 0.958   VIF 1.044
+    NDVI                 TOL 0.830   VIF 1.204
+    MAP                  TOL 0.857   VIF 1.167
+    Minimum TOL = 0.817 (Distance to rivers)
+    Maximum VIF = 1.225 (Distance to rivers)
+    Thresholds: TOL > 0.2 and VIF < 5 -> no multicollinearity
+    among the nine factors.
+
+[2] IC MODEL (information content summed over the 9 factors)
+    IC value range      : -3.563 to 1.604
+    IC model AUC (train): 0.7467
+    IC model AUC (test) : 0.7431
+
+[3] RF MODEL (raw factors)
+    RF AUC (train)      : 0.8367
+    RF AUC (test)       : 0.7813
+    Test accuracy       : 0.7202   precision 0.7336   recall 0.6914   F1 0.7119
+    Confusion matrix (test, TN/FP/FN/TP): 182/61/75/168
+
+[4] IC-RF COUPLING MODEL (RF trained on IC-transformed factors)
+    IC-RF AUC (train)   : 0.8058
+    IC-RF AUC (test)    : 0.7703
+    Test accuracy       : 0.7078   precision 0.7149   recall 0.6914   F1 0.7029
+    Confusion matrix (test, TN/FP/FN/TP): 176/67/75/168
+
+[5] 5-FOLD STRATIFIED CROSS-VALIDATION (mean AUC +/- std)
+    RF    : 0.7715 +/- 0.0182
+    IC-RF : 0.7598 +/- 0.0182
+    NOTE: the original manuscript reported 5-fold SPATIAL BLOCK CV
+    (mean AUC 0.7717). Spatial blocks require sample coordinates,
+    which are not present in the surviving CSVs, so stratified
+    k-fold CV is reported instead.
+
+[6] SHAP FEATURE IMPORTANCE (mean |SHAP|, test set, from SHAP_Values_Base.csv)
+    NDVI         0.1264
+    Elevation    0.0337
+    Slope        0.0335
+    Distance to Roads 0.0308
+    MAP          0.0206
+    Aspest       0.0077
+    Distance to Rivers 0.0054
+    Lithology    0.0043
+    Distance to Faults 0.0008
+
+    Top-3: NDVI 0.1264, Elevation 0.0337, Slope 0.0335
+
+[7] Per-class IC table written to ic_values_table.csv
+[8] Figures written: fig2.png (correlation heatmap, 600 dpi), fig7.png (two-panel manuscript figure), fig_roc_curves.png, fig_shap_importance.png, fig_shap_beeswarm.png, fig_cv_roc.png (300 dpi)
+
+NOTES
+  - Sample total is 1620 (the manuscript currently says 1736);
+    update the paper to the real counts printed above.
+  - Zone-area percentages (Fig 6d) and the spatial-block CV require
+    rasters/coordinates that were lost; they cannot be recomputed
+    from these CSVs alone.
