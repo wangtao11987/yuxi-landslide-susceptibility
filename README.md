@@ -74,4 +74,5 @@ The script writes all outputs into the current folder (see table above).
 
 ## License
 
-MIT
+This repository is licensed under the [MIT License](LICENSE).
+Copyright (c) 2026 Tao Wang.
