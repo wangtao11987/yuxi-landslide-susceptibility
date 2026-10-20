@@ -2,8 +2,7 @@
 
 Reproducible analysis pipeline for the manuscript:
 
-> **Coupling information content and random forest for landslide susceptibility mapping in a plateau-mountain transition zone: a case study of Yuxi City, Yunnan, China**
-> (PLOS ONE, PONE-D-26-33050, revision)
+> **Coupling information content and random forest for interpretable landslide susceptibility mapping: a case study of Yuxi City, China**
 
 This repository contains the code and derived data needed to reproduce every
 number reported in the manuscript (Table 2, Table 3, and the evaluation
@@ -66,7 +65,7 @@ The script writes all outputs into the current folder (see table above).
 
 - The random forest uses a fixed `random_state=42`, so runs are
   deterministic given the same input CSV files.
-- Figures use Times New Roman (PLOS style); if it is not installed on your
+- Figures use Times New Roman; if it is not installed on your
   machine the script falls back to Liberation Serif or DejaVu Serif
   (metrically compatible), which does not change any reported value.
 - `best_rf_params.csv` is optional: if absent, the tuned hyperparameters
